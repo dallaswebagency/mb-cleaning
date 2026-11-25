@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MB Facility Services | Commercial Cleaning and Hygiene Services</title>
+<meta name="description" content="MB Facility Services. Commercial Cleaning and Hygiene Services. Hood and vent cleaning, washroom hygiene, commercial kitchen cleaning, kitchen preventive maintenance, ceiling cleaning and floor care in British Columbia and Alberta.">
+<link rel="icon" href="images/maple-leaf.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2240;
+  --navy-deep:#0A182F;
+  --navy-line:#1E3863;
+  --steel:#8EB4F0;
+  --ice:#CADCF9;
+  --frost:#EEF3FC;
+  --paper:#F8FAFE;
+  --maple:#CC0000;
+  --maple-dark:#A30000;
+  --metal-1:#E9EDF2;
+  --metal-2:#C3CBD5;
+  --ink:#14233B;
+  --muted:#53627A;
+  --wrap:1240px;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);font-size:17px;line-height:1.6;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--steel);outline-offset:3px}
+.wrap{width:min(var(--wrap),100% - 48px);margin-inline:auto}
+.display{font-stretch:125%;font-weight:800;font-style:italic;letter-spacing:-.01em;line-height:1.02}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:3px;font-weight:700;font-size:15px;text-decoration:none;font-stretch:110%;transition:background .2s,color .2s,transform .2s}
+.btn-red{background:var(--maple);color:#fff}
+.btn-red:hover{background:var(--maple-dark)}
+.btn-line{border:1.5px solid rgba(202,220,249,.45);color:#fff}
+.btn-line:hover{border-color:var(--ice);background:rgba(142,180,240,.12)}
+
+/* Top bar */
+.topbar{background:var(--navy-deep);color:var(--ice);font-size:13.5px}
+.topbar .wrap{display:flex;justify-content:space-between;gap:20px;padding:9px 0;flex-wrap:wrap}
+.topbar a{text-decoration:none;color:#fff}
+.topbar a:hover{color:var(--steel)}
+.topbar .mails{display:flex;gap:26px;flex-wrap:wrap}
+.topbar b{font-weight:600;color:var(--steel);margin-right:6px}
+
+/* Header */
+header.site{position:sticky;top:0;z-index:50;background:var(--navy);border-bottom:1px solid var(--navy-line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:86px}
+.brand img{height:68px;width:auto}
+nav.main ul{list-style:none;margin:0;padding:0;display:flex;gap:6px;align-items:center}
+nav.main > ul > li{position:relative}
+nav.main > ul > li:not(.nav-cta) > a,nav.main > ul > li > button{display:flex;align-items:center;gap:6px;padding:12px 16px;color:#fff;text-decoration:none;font:600 15.5px var(--font);background:none;border:0;cursor:pointer}
+nav.main > ul > li:not(.nav-cta) > a:hover,nav.main > ul > li > button:hover{color:var(--steel)}
+nav.main .caret{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px)}
+.drop{position:absolute;top:100%;left:0;min-width:290px;background:#fff;border-radius:4px;padding:10px;box-shadow:0 22px 50px rgba(10,24,47,.28);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}
+.drop::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--maple);border-radius:4px 4px 0 0}
+nav.main li:hover .drop,nav.main li:focus-within .drop{opacity:1;visibility:visible;transform:none}
+.drop a{display:block;padding:10px 14px;color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;border-radius:3px}
+.drop a:hover{background:var(--frost);color:var(--navy)}
+.nav-cta{margin-left:14px}
+.burger{display:none;background:none;border:1.5px solid var(--navy-line);border-radius:4px;width:48px;height:44px;cursor:pointer;position:relative}
+.burger span,.burger span::before,.burger span::after{position:absolute;left:12px;width:22px;height:2px;background:#fff;content:"";transition:.25s}
+.burger span{top:21px}.burger span::before{left:0;top:-7px}.burger span::after{left:0;top:7px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+/* Hero */
+.hero{position:relative;background:var(--navy);color:#fff;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(115deg,transparent 0 46px,rgba(142,180,240,.05) 46px 48px);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center;padding:78px 0 120px}
+.hero h1{font-size:clamp(40px,5.4vw,74px);margin:0 0 26px;color:#fff}
+.hero h1 .company{display:block;font-size:.36em;font-stretch:110%;font-style:normal;font-weight:600;color:var(--steel);letter-spacing:.01em;margin-bottom:18px;line-height:1.2}
+.hero p.lead{font-size:19px;color:var(--ice);max-width:520px;margin:0 0 36px}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-visual{position:relative;aspect-ratio:4/3.3}
+.hood-frame{position:absolute;inset:0;border-radius:4px;overflow:hidden;background:#24344f}
+.hood-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);filter:saturate(.75) brightness(.85);transition:transform 2.4s cubic-bezier(.2,.7,.2,1),filter 2.4s}
+.hood-frame.on img{transform:scale(1);filter:none}
+.baffles{position:absolute;inset:0;display:grid;grid-template-columns:repeat(9,1fr);pointer-events:none}
+.baffles i{display:block;background:linear-gradient(90deg,#b7c1cd,#eef1f5 38%,#9aa6b4 62%,#d9dfe6);border-right:1px solid rgba(15,34,64,.25);transform-origin:top;transition:transform .9s cubic-bezier(.7,0,.25,1)}
+.hood-frame.on .baffles i{transform:scaleY(0)}
+.hero-visual .leaf-tag{position:absolute;left:-34px;bottom:-40px;width:188px;background:#fff;color:var(--ink);border-radius:4px;padding:18px 18px 16px;box-shadow:0 24px 50px rgba(5,14,30,.35);opacity:0;transform:translateY(16px);transition:.7s 1.5s}
+.hood-frame.on ~ .leaf-tag{opacity:1;transform:none}
+.leaf-tag img{width:34px;margin-bottom:8px}
+.leaf-tag strong{display:block;font-stretch:125%;font-style:italic;font-weight:800;font-size:46px;line-height:1;color:var(--navy)}
+.leaf-tag span{font-size:14px;color:var(--muted);line-height:1.35;display:block;margin-top:6px}
+.hero-visual .edge{position:absolute;right:-14px;top:24px;bottom:24px;width:14px;background:linear-gradient(90deg,var(--maple),var(--maple-dark));border-radius:0 3px 3px 0}
+
+/* Steel plate (certifications) */
+.plate-wrap{position:relative;z-index:2;margin-top:-54px}
+.plate{display:grid;grid-template-columns:repeat(4,1fr);background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.18) 0 1px,transparent 1px 3px),
+  linear-gradient(100deg,var(--metal-2),var(--metal-1) 30%,#d3d9e0 55%,var(--metal-1) 78%,#b9c2cc);
+  border-radius:4px;box-shadow:0 18px 40px rgba(10,24,47,.18),inset 0 1px 0 rgba(255,255,255,.8);position:relative}
+.plate > div{padding:26px 26px 24px 54px;position:relative;border-left:1px solid rgba(15,34,64,.14)}
+.plate > div:first-child{border-left:0}
+.plate > div::before{content:"";position:absolute;left:24px;top:31px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#8d98a6 70%);box-shadow:inset 0 0 0 1px rgba(15,34,64,.3)}
+.plate b{display:block;font-stretch:118%;font-weight:800;font-size:17px;color:var(--navy);line-height:1.25}
+.plate span{font-size:13.5px;color:#46546b}
+
+/* Section basics */
+section{padding:110px 0}
+h2.display{font-size:clamp(34px,4.2vw,56px);margin:0;color:var(--navy)}
+.intro{max-width:560px;color:var(--muted);font-size:18px;margin:18px 0 0}
+
+/* Services */
+.services{background:var(--paper)}
+.svc-head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:56px}
+.svc-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:60px;align-items:start}
+.svc-list{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--navy)}
+.svc-list li{border-bottom:1px solid #d4ddeb}
+.svc-list a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;padding:24px 6px 24px 0;text-decoration:none;color:var(--navy);position:relative}
+.svc-list a h3{margin:0;font-stretch:115%;font-weight:700;font-size:clamp(21px,2.1vw,27px);line-height:1.2;transition:transform .3s,color .3s}
+.svc-list a .go{width:44px;height:44px;border-radius:50%;border:1.5px solid #c3cfe2;display:grid;place-items:center;transition:.3s;flex:none}
+.svc-list a .go svg{width:16px;height:16px;transition:transform .3s}
+.svc-list a::before{content:"";position:absolute;left:-18px;top:50%;width:6px;height:0;background:var(--maple);transform:translateY(-50%);transition:height .3s}
+.svc-list li.active a h3{transform:translateX(10px)}
+.svc-list li.active a::before{height:56%}
+.svc-list li.active a .go{background:var(--navy);border-color:var(--navy);color:#fff}
+.svc-list li.active a .go svg{transform:rotate(-45deg)}
+.svc-list .m-img{display:none}
+.svc-stage{position:sticky;top:120px;aspect-ratio:4/3.4;border-radius:4px;overflow:hidden;background:var(--navy)}
+.svc-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .6s,transform 1.2s}
+.svc-stage img.show{opacity:1;transform:none}
+.svc-stage figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 28px 24px;color:#fff;background:linear-gradient(transparent,rgba(10,24,47,.85));display:flex;justify-content:space-between;align-items:end;gap:16px}
+.svc-stage figcaption strong{font-stretch:120%;font-style:italic;font-weight:800;font-size:24px;line-height:1.15}
+.svc-stage figcaption a{color:#fff;font-size:14.5px;font-weight:600;white-space:nowrap;text-underline-offset:4px}
+
+/* Advantages */
+.adv{background:#fff;position:relative}
+.adv-grid{display:grid;grid-template-columns:1.1fr .95fr;gap:70px;align-items:center}
+.years{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end;margin:28px 0 34px}
+.years .num{font-stretch:125%;font-style:italic;font-weight:900;font-size:clamp(130px,15vw,210px);line-height:.8;color:var(--navy);letter-spacing:-.04em;position:relative}
+.years .num sup{font-size:.36em;color:var(--maple);vertical-align:top;position:relative;top:.05em;margin-left:4px}
+.years p{margin:0 0 8px;font-size:19px;color:var(--muted);max-width:240px;line-height:1.4}
+.adv-photo{border-radius:4px;overflow:hidden;aspect-ratio:16/8}
+.adv-photo img{width:100%;height:100%;object-fit:cover}
+
+.tag{background:var(--frost);border-radius:6px;position:relative;padding:0 0 18px;box-shadow:0 28px 60px rgba(15,34,64,.14);transform:rotate(1.6deg)}
+.tag::before{content:"";position:absolute;top:22px;right:26px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:inset 0 2px 4px rgba(15,34,64,.25)}
+.tag-top{background:var(--navy);color:#fff;border-radius:6px 6px 0 0;padding:24px 70px 22px 28px;display:flex;gap:14px;align-items:center}
+.tag-top img{width:38px}
+.tag-top strong{display:block;font-stretch:120%;font-weight:800;font-style:italic;font-size:21px;line-height:1.1}
+.tag-top span{font-size:13.5px;color:var(--ice)}
+.tag ul{list-style:none;margin:0;padding:8px 28px 0}
+.tag li{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px dashed #b9c9e4;font-weight:600;font-size:17px;color:var(--navy)}
+.tag li:last-child{border-bottom:0}
+.box{width:26px;height:26px;border:2px solid var(--navy);border-radius:3px;display:grid;place-items:center;flex:none;background:#fff}
+.box svg{width:18px;height:18px;stroke:var(--maple);stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
+.tag.ticked .box svg{animation:tick .45s forwards}
+@keyframes tick{to{stroke-dashoffset:0}}
+.tag-foot{margin:6px 28px 0;padding-top:14px;border-top:2px solid var(--navy);display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+
+/* Clients */
+.clients{background:var(--navy);color:#fff;padding:90px 0;overflow:hidden}
+.clients .wrap{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:44px;flex-wrap:wrap}
+.clients h2{color:#fff}
+.clients p{color:var(--ice);margin:0;max-width:360px}
+.marquee{display:flex;width:max-content;animation:slide 34s linear infinite}
+.marquee:hover{animation-play-state:paused}
+.logo-tile{width:250px;height:150px;margin-right:22px;background:#fff;border-radius:4px;display:grid;place-items:center;padding:26px 34px;flex:none}
+.logo-tile img{max-height:96px;max-width:100%;object-fit:contain}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Locations */
+.locations{background:var(--frost)}
+.loc-head{margin-bottom:54px}
+.loc-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:26px}
+.prov{background:#fff;border-radius:4px;padding:40px 40px 34px;display:flex;flex-direction:column;position:relative;overflow:hidden;border-top:6px solid var(--navy)}
+.prov.ab{border-top-color:var(--maple)}
+.prov h3{margin:0 0 6px;font-stretch:125%;font-style:italic;font-weight:800;font-size:clamp(26px,2.6vw,34px);color:var(--navy);line-height:1.1}
+.prov .count{color:var(--muted);font-size:15px;margin:0 0 26px}
+.cities{list-style:none;margin:0 0 30px;padding:0;columns:3;column-gap:24px}
+.ab .cities{columns:2}
+.cities li{padding:7px 0;font-weight:500;break-inside:avoid;display:flex;gap:10px;align-items:center}
+.cities li::before{content:"";width:7px;height:7px;border:2px solid var(--steel);border-radius:50%;flex:none}
+.prov .foot{margin-top:auto;padding-top:22px;border-top:1px solid #dde5f2;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.prov .foot a{font-weight:600;font-size:15px;text-underline-offset:4px;color:var(--navy)}
+.prov .foot a.mail{text-decoration:none;color:var(--muted);font-weight:500}
+.prov .foot a.mail:hover{color:var(--navy)}
+
+/* Estimate band */
+.estimate{position:relative;padding:120px 0;color:#fff;background:var(--navy-deep);overflow:hidden}
+.estimate .bg{position:absolute;inset:0;background:url("images/hood-and-vent-cleaning.jpg") center/cover;opacity:.32}
+.estimate::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy-deep) 25%,rgba(10,24,47,.4))}
+.estimate .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.estimate h2{color:#fff}
+.estimate p{color:var(--ice);font-size:18px;max-width:480px;margin:20px 0 34px}
+.reach{display:grid;gap:12px}
+.reach a{display:flex;align-items:center;gap:18px;padding:18px 22px;background:rgba(255,255,255,.06);border:1px solid rgba(202,220,249,.2);border-radius:4px;text-decoration:none;transition:background .2s,border-color .2s}
+.reach a:hover{background:rgba(255,255,255,.12);border-color:var(--steel)}
+.reach img{width:34px;height:34px}
+.reach .ico{width:34px;height:34px;border-radius:50%;background:var(--maple);display:grid;place-items:center;flex:none}
+.reach .ico svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2}
+.reach small{display:block;color:var(--steel);font-size:13px}
+.reach b{font-weight:600;font-size:16.5px;word-break:break-word}
+
+/* Footer */
+footer{background:var(--navy);color:var(--ice);padding:80px 0 0;font-size:15.5px}
+.f-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px}
+footer h4{margin:0 0 18px;color:#fff;font-stretch:115%;font-size:17px}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin-bottom:10px}
+footer a{text-decoration:none;color:var(--ice)}
+footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.f-logo img{height:96px;width:auto;margin-bottom:16px}
+.f-contact p{margin:0 0 14px}
+.f-contact small{display:block;color:var(--steel);font-size:13px}
+.social{display:flex;gap:10px;margin-top:22px}
+.social a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center}
+.social a:hover{background:rgba(255,255,255,.18)}
+.social img{width:24px;height:24px}
+.f-bottom{border-top:1px solid var(--navy-line);padding:22px 0;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--steel)}
+.f-bottom a{color:#fff;font-weight:600}
+
+/* Responsive */
+@media (max-width:1080px){
+  nav.main{position:fixed;inset:86px 0 auto 0;background:var(--navy);border-top:1px solid var(--navy-line);max-height:calc(100vh - 86px);overflow:auto;display:none;padding:12px 24px 28px}
+  nav.main.open{display:block}
+  nav.main ul{flex-direction:column;align-items:stretch;gap:0}
+  nav.main > ul > li:not(.nav-cta) > a,nav.main > ul > li > button{padding:14px 0;width:100%;justify-content:space-between;border-bottom:1px solid var(--navy-line)}
+  .drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:transparent;padding:4px 0 8px 12px;display:none}
+  .drop::before{display:none}
+  nav.main li.sub-open .drop{display:block}
+  .drop a{color:var(--ice)}
+  .drop a:hover{background:transparent;color:#fff}
+  .nav-cta{margin:18px 0 0}
+  .nav-cta .btn{width:100%;justify-content:center}
+  .burger{display:block}
+  .hero .wrap{grid-template-columns:1fr;padding:56px 0 110px}
+  .hero-visual{max-width:640px;margin-left:34px}
+  .plate{grid-template-columns:repeat(2,1fr)}
+  .plate > div:nth-child(3){border-left:0}
+  .plate > div:nth-child(n+3){border-top:1px solid rgba(15,34,64,.14)}
+  .svc-grid,.adv-grid,.loc-grid,.estimate .wrap{grid-template-columns:1fr}
+  .svc-stage{display:none}
+  .svc-list .m-img{display:block;grid-column:1/-1;aspect-ratio:16/9;object-fit:cover;width:100%;border-radius:4px;margin:0}
+  .svc-list li.active a h3{transform:none}
+  .svc-list a::before{display:none}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  section{padding:80px 0}
+  .topbar .wrap{justify-content:center;text-align:center}
+  .topbar .note{display:none}
+  .brand img{height:56px}
+  header.site .wrap{height:76px}
+  nav.main{inset:76px 0 auto 0;max-height:calc(100vh - 76px)}
+  .hero-visual{margin-left:0}
+  .hero .wrap{padding:44px 0 130px}
+  .topbar .mails{gap:4px 18px;justify-content:center}
+  .hero-visual .leaf-tag{left:12px;bottom:-34px;width:160px}
+  .leaf-tag strong{font-size:38px}
+  .hero-visual .edge{display:none}
+  .plate{grid-template-columns:1fr}
+  .plate > div{border-left:0;border-top:1px solid rgba(15,34,64,.14)}
+  .plate > div:first-child{border-top:0}
+  .years{grid-template-columns:1fr;gap:10px}
+  .tag{transform:none}
+  .cities{columns:2}
+  .prov{padding:30px 24px}
+  .logo-tile{width:190px;height:120px}
+  .f-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .baffles{display:none}
+  .hood-frame img{transform:none;filter:none}
+  .hero-visual .leaf-tag{opacity:1;transform:none}
+  .box svg{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="mails">
+      <a href="mailto:mbcleaning.bc@gmail.com"><b>British Columbia</b>mbcleaning.bc@gmail.com</a>
+      <a href="mailto:mbcleaning.ab@gmail.com"><b>Alberta</b>mbcleaning.ab@gmail.com</a>
+    </div>
+    <span class="note">Free estimates and references upon request</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="https://www.mb-cleaning.ca/"><img src="images/mb-facility-services-logo.png" alt="MB Facility Services logo"></a>
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
+    <nav class="main" id="mainnav" aria-label="Main">
+      <ul>
+        <li><a href="https://www.mb-cleaning.ca/">Home</a></li>
+        <li class="has-sub">
+          <button type="button" aria-haspopup="true">Services <span class="caret"></span></button>
+          <div class="drop">
+            <a href="https://www.mb-cleaning.ca/services/hood-and-vent-cleaning">Hood and Vent Cleaning</a>
+            <a href="https://www.mb-cleaning.ca/services/washroom-hygiene">Washroom Hygiene</a>
+            <a href="https://www.mb-cleaning.ca/services/commercial-kitchen-cleaning">Commercial Kitchen Cleaning</a>
+            <a href="https://www.mb-cleaning.ca/services/kitchen-preventive-maintenance">Kitchen Preventive Maintenance</a>
+            <a href="https://www.mb-cleaning.ca/services/ceiling-cleaning">Ceiling Cleaning</a>
+            <a href="https://www.mb-cleaning.ca/services/floor-care">Floor Care</a>
+          </div>
+        </li>
+        <li class="has-sub">
+          <button type="button" aria-haspopup="true">Locations <span class="caret"></span></button>
+          <div class="drop">
+            <a href="https://www.mb-cleaning.ca/locations/british-columbia">British Columbia</a>
+            <a href="https://www.mb-cleaning.ca/locations/alberta">Alberta</a>
+          </div>
+        </li>
+        <li><a href="https://www.mb-cleaning.ca/contact">Contact</a></li>
+        <li class="nav-cta"><a class="btn btn-red" href="https://www.mb-cleaning.ca/contact">Get a free estimate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-label="Introduction" style="padding:0">
+    <div class="wrap">
+      <div>
+        <h1 class="display"><span class="company">MB Facility Services</span>Commercial cleaning and hygiene services</h1>
+        <p class="lead">Specialized in commercial exhaust cleaning, kitchen deep cleaning, ceiling cleaning and washrooms sanitation.</p>
+        <div class="ctas">
+          <a class="btn btn-red" href="https://www.mb-cleaning.ca/contact">Get a free estimate</a>
+          <a class="btn btn-line" href="#services">Our services</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hood-frame" id="hood">
+          <img src="images/hero-kitchen.jpg" alt="Clean stainless steel commercial kitchen with exhaust hood">
+          <div class="baffles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <span class="edge" aria-hidden="true"></span>
+        <div class="leaf-tag">
+          <img src="images/maple-leaf.png" alt="">
+          <strong>25+</strong>
+          <span>Over 25 years of experience</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="plate-wrap">
+    <div class="wrap">
+      <div class="plate" aria-label="Certifications">
+        <div><b>ASTTBC Certified</b></div>
+        <div><b>Phil Ackland Certified</b></div>
+        <div><b>Fully Insured</b></div>
+        <div><b>WCB Cleared</b></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="svc-head">
+        <h2 class="display">Our services</h2>
+        <p class="intro" style="margin:0">Six specialized services across British Columbia and Alberta.</p>
+      </div>
+      <div class="svc-grid">
+        <ul class="svc-list" id="svcList">
+          <li class="active" data-img="0"><a href="https://www.mb-cleaning.ca/services/hood-and-vent-cleaning"><img class="m-img" src="images/hood-and-vent-cleaning.jpg" alt="Commercial exhaust hood and vent" loading="lazy"><h3>Hood and Vent Cleaning</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
+          <li data-img="1"><a href="https://www.mb-cleaning.ca/services/washroom-hygiene"><img class="m-img" src="images/washroom-hygiene.jpg" alt="Clean commercial washroom" loading="lazy"><h3>Washroom Hygiene</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
+          <li data-img="2"><a href="https://www.mb-cleaning.ca/services/commercial-kitchen-cleaning"><img class="m-img" src="images/commercial-kitchen-cleaning.jpg" alt="Deep cleaned commercial kitchen" loading="lazy"><h3>Commercial Kitchen Cleaning</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
+          <li data-img="3"><a href="https://www.mb-cleaning.ca/services/kitchen-preventive-maintenance"><img class="m-img" src="images/kitchen-preventive-maintenance.jpg" alt="Commercial kitchen equipment" loading="lazy"><h3>Kitchen Preventive Maintenance</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
+          <li data-img="4"><a href="https://www.mb-cleaning.ca/services/ceiling-cleaning"><img class="m-img" src="images/ceiling-cleaning.jpg" alt="Clean commercial ceiling tiles" loading="lazy"><h3>Ceiling Cleaning</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
+          <li data-img="5"><a href="https://www.mb-cleaning.ca/services/floor-care"><img class="m-img" src="images/floor-care.jpg" alt="Polished commercial floor" loading="lazy"><h3>Floor Care</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
+        </ul>
+        <figure class="svc-stage" aria-hidden="true" style="margin:0">
+          <img class="show" src="images/hood-and-vent-cleaning.jpg" alt="">
+          <img src="images/washroom-hygiene.jpg" alt="" loading="lazy">
+          <img src="images/commercial-kitchen-cleaning.jpg" alt="" loading="lazy">
+          <img src="images/kitchen-preventive-maintenance.jpg" alt="" loading="lazy">
+          <img src="images/ceiling-cleaning.jpg" alt="" loading="lazy">
+          <img src="images/floor-care.jpg" alt="" loading="lazy">
+          <figcaption><strong id="stageTitle">Hood and Vent Cleaning</strong><a id="stageLink" href="https://www.mb-cleaning.ca/services/hood-and-vent-cleaning" tabindex="-1">View service</a></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="adv" id="advantages">
+    <div class="wrap adv-grid">
+      <div>
+        <h2 class="display">Our advantages</h2>
+        <div class="years">
+          <div class="num">25<sup>+</sup></div>
+          <p>Over 25 years of experience in commercial cleaning and hygiene.</p>
+        </div>
+        <div class="adv-photo"><img src="images/kitchen-preventive-maintenance.jpg" alt="Clean commercial kitchen line" loading="lazy"></div>
+      </div>
+      <div class="tag" id="tag">
+        <div class="tag-top">
+          <img src="images/maple-leaf.png" alt="">
+          <div><strong>MB Facility Services</strong><span>Commercial Cleaning and Hygiene Services</span></div>
+        </div>
+        <ul>
+          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Professional Service</li>
+          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>ASTTBC Certified</li>
+          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Phil Ackland Certified</li>
+          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Fully Insured</li>
+          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>WCB Cleared</li>
+          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Over 25 Years of Experience</li>
+          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Free Estimates</li>
+          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>References Upon Request</li>
+        </ul>
+        <div class="tag-foot"><span>British Columbia</span><span>Alberta</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="clients" aria-labelledby="clientsTitle">
+    <div class="wrap">
+      <h2 class="display" id="clientsTitle">Working with top companies</h2>
+    </div>
+    <div class="marquee" aria-hidden="false">
+      <div class="logo-tile"><img src="images/costco_logo.png" alt="Costco"></div>
+      <div class="logo-tile"><img src="images/tim-hortons-logo.png" alt="Tim Hortons"></div>
+      <div class="logo-tile"><img src="images/tacofino-logo.png" alt="Tacofino"></div>
+      <div class="logo-tile"><img src="images/browns-socialhouse-logo.png" alt="Browns Socialhouse"></div>
+      <div class="logo-tile"><img src="images/chances-logo.png" alt="Chances"></div>
+      <div class="logo-tile"><img src="images/hardrock_casino-logo.jpg" alt="Hard Rock Casino"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="images/costco_logo.png" alt=""></div>
+      <div class="logo-tile" aria-hidden="true"><img src="images/tim-hortons-logo.png" alt=""></div>
+      <div class="logo-tile" aria-hidden="true"><img src="images/tacofino-logo.png" alt=""></div>
+      <div class="logo-tile" aria-hidden="true"><img src="images/browns-socialhouse-logo.png" alt=""></div>
+      <div class="logo-tile" aria-hidden="true"><img src="images/chances-logo.png" alt=""></div>
+      <div class="logo-tile" aria-hidden="true"><img src="images/hardrock_casino-logo.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <section class="locations" id="locations">
+    <div class="wrap">
+      <div class="loc-head"><h2 class="display">Locations</h2></div>
+      <div class="loc-grid">
+        <article class="prov bc">
+          <h3>British Columbia</h3>
+          <p class="count">15 cities</p>
+          <ul class="cities">
+            <li>Vancouver</li><li>North Vancouver</li><li>West Vancouver</li><li>New Westminster</li><li>Port Coquitlam</li>
+            <li>Richmond</li><li>Burnaby</li><li>Surrey</li><li>Delta</li><li>White Rock</li>
+            <li>Coquitlam</li><li>Langley</li><li>Abbotsford</li><li>Maple Ridge</li><li>Chilliwack</li>
+          </ul>
+          <div class="foot">
+            <a class="mail" href="mailto:mbcleaning.bc@gmail.com">mbcleaning.bc@gmail.com</a>
+            <a href="https://www.mb-cleaning.ca/locations/british-columbia">British Columbia service area</a>
+          </div>
+        </article>
+        <article class="prov ab">
+          <h3>Alberta</h3>
+          <p class="count">6 cities</p>
+          <ul class="cities">
+            <li>Edmonton</li><li>Calgary</li><li>St. Albert</li>
+            <li>Red Deer</li><li>Airdrie</li><li>Lethbridge</li>
+          </ul>
+          <div class="foot">
+            <a class="mail" href="mailto:mbcleaning.ab@gmail.com">mbcleaning.ab@gmail.com</a>
+            <a href="https://www.mb-cleaning.ca/locations/alberta">Alberta service area</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="estimate" aria-labelledby="estTitle">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <h2 class="display" id="estTitle">Free estimates, references upon request</h2>
+        <p>Contact MB Facility Services Ltd. in British Columbia or Alberta.</p>
+        <a class="btn btn-red" href="https://www.mb-cleaning.ca/contact">Contact us</a>
+      </div>
+      <div class="reach">
+        <a href="mailto:mbcleaning.bc@gmail.com"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>British Columbia</small><b>mbcleaning.bc@gmail.com</b></span></a>
+        <a href="mailto:mbcleaning.ab@gmail.com"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Alberta</small><b>mbcleaning.ab@gmail.com</b></span></a>
+        <a href="https://wa.me/17789383936"><img src="images/whatsapp.svg" alt=""><span><small>WhatsApp</small><b>Message us on WhatsApp</b></span></a>
+        <a href="https://m.me/mbfalicityservices"><img src="images/messenger.svg" alt=""><span><small>Messenger</small><b>Message us on Messenger</b></span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-contact">
+        <a class="f-logo" href="https://www.mb-cleaning.ca/"><img src="images/mb-facility-services-logo.png" alt="MB Facility Services logo"></a>
+        <h4>MB Facility Services Ltd.</h4>
+        <div class="social">
+          <a href="https://www.facebook.com/pg/mbfalicityservices" aria-label="Facebook"><img src="images/facebook-gray.svg" alt=""></a>
+          <a href="https://m.me/mbfalicityservices" aria-label="Messenger"><img src="images/messenger.svg" alt=""></a>
+          <a href="https://wa.me/17789383936" aria-label="WhatsApp"><img src="images/whatsapp.svg" alt=""></a>
+        </div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="https://www.mb-cleaning.ca/services/hood-and-vent-cleaning">Hood and Vent Cleaning</a></li>
+          <li><a href="https://www.mb-cleaning.ca/services/washroom-hygiene">Washroom Hygiene</a></li>
+          <li><a href="https://www.mb-cleaning.ca/services/commercial-kitchen-cleaning">Commercial Kitchen Cleaning</a></li>
+          <li><a href="https://www.mb-cleaning.ca/services/kitchen-preventive-maintenance">Kitchen Preventive Maintenance</a></li>
+          <li><a href="https://www.mb-cleaning.ca/services/ceiling-cleaning">Ceiling Cleaning</a></li>
+          <li><a href="https://www.mb-cleaning.ca/services/floor-care">Floor Care</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Locations</h4>
+        <ul>
+          <li><a href="https://www.mb-cleaning.ca/locations/british-columbia">British Columbia</a></li>
+          <li><a href="https://www.mb-cleaning.ca/locations/alberta">Alberta</a></li>
+          <li><a href="https://www.mb-cleaning.ca/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="f-contact">
+        <h4>Contact</h4>
+        <p><small>British Columbia</small><a href="mailto:mbcleaning.bc@gmail.com">mbcleaning.bc@gmail.com</a></p>
+        <p><small>Alberta</small><a href="mailto:mbcleaning.ab@gmail.com">mbcleaning.ab@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap f-bottom">
+    <span>&copy; <span id="yr">2026</span> MB Facility Services Ltd.</span>
+    <span><a href="https://cleaningdigital.ca/">Design by Cleaning Digital.</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Hero baffle reveal
+  var hood=document.getElementById('hood');
+  var slats=hood.querySelectorAll('.baffles i');
+  slats.forEach(function(s,i){s.style.transitionDelay=(0.15+i*0.08)+'s';});
+  requestAnimationFrame(function(){setTimeout(function(){hood.classList.add('on');},120);});
+
+  // Mobile nav
+  var burger=document.querySelector('.burger'),nav=document.getElementById('mainnav');
+  burger.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  document.querySelectorAll('.has-sub > button').forEach(function(b){
+    b.addEventListener('click',function(){b.parentElement.classList.toggle('sub-open');});
+  });
+
+  // Services stage
+  var items=document.querySelectorAll('#svcList li'),imgs=document.querySelectorAll('.svc-stage img'),
+      title=document.getElementById('stageTitle'),link=document.getElementById('stageLink');
+  function activate(li){
+    items.forEach(function(x){x.classList.remove('active');});
+    li.classList.add('active');
+    var n=+li.dataset.img;
+    imgs.forEach(function(im,i){im.classList.toggle('show',i===n);});
+    title.textContent=li.querySelector('h3').textContent;
+    link.href=li.querySelector('a').href;
+  }
+  items.forEach(function(li){
+    li.addEventListener('mouseenter',function(){activate(li);});
+    li.querySelector('a').addEventListener('focus',function(){activate(li);});
+  });
+
+  // Advantage tag ticks
+  var tag=document.getElementById('tag');
+  tag.querySelectorAll('.box svg').forEach(function(s,i){s.style.animationDelay=(i*0.12)+'s';});
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e,o){if(e[0].isIntersecting){tag.classList.add('ticked');o.disconnect();}},{threshold:.35}).observe(tag);
+  }else{tag.classList.add('ticked');}
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
