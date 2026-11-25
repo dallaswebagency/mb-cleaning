@@ -11,63 +11,73 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0F2240;
-  --navy-deep:#0A182F;
-  --navy-line:#1E3863;
-  --steel:#8EB4F0;
-  --ice:#CADCF9;
-  --frost:#EEF3FC;
-  --paper:#F8FAFE;
-  --maple:#CC0000;
-  --maple-dark:#A30000;
-  --metal-1:#E9EDF2;
-  --metal-2:#C3CBD5;
-  --ink:#14233B;
-  --muted:#53627A;
-  --wrap:1240px;
+  --navy:#0F2240;--navy-deep:#091629;--navy-mid:#16305A;--navy-line:rgba(142,180,240,.16);
+  --steel:#8EB4F0;--ice:#CADCF9;--frost:#EEF3FC;--paper:#F7F9FD;
+  --maple:#CC0000;--maple-dark:#A30000;
+  --metal-1:#EEF1F5;--metal-2:#BCC5D0;
+  --ink:#14233B;--muted:#55647C;
+  --wrap:1280px;
   --font:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --ease:cubic-bezier(.7,0,.2,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:var(--font);font-size:17px;line-height:1.6;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:var(--font);font-size:17px;line-height:1.6;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--steel);outline-offset:3px}
 .wrap{width:min(var(--wrap),100% - 48px);margin-inline:auto}
-.display{font-stretch:125%;font-weight:800;font-style:italic;letter-spacing:-.01em;line-height:1.02}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.display{font-stretch:125%;font-weight:800;font-style:normal;letter-spacing:-.015em;line-height:1}
+section{padding:120px 0;position:relative}
+h2.display{font-size:clamp(36px,4.6vw,64px);margin:0;color:var(--navy)}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:3px;font-weight:700;font-size:15px;text-decoration:none;font-stretch:110%;transition:background .2s,color .2s,transform .2s}
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:17px 28px;border-radius:3px;font-weight:700;font-size:15.5px;text-decoration:none;font-stretch:112%;overflow:hidden;isolation:isolate;transition:color .3s,border-color .3s}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.btn:hover::after{transform:scaleX(1);transform-origin:left}
 .btn-red{background:var(--maple);color:#fff}
-.btn-red:hover{background:var(--maple-dark)}
-.btn-line{border:1.5px solid rgba(202,220,249,.45);color:#fff}
-.btn-line:hover{border-color:var(--ice);background:rgba(142,180,240,.12)}
+.btn-red::after{background:var(--maple-dark)}
+.btn-line{border:1.5px solid rgba(202,220,249,.5);color:#fff;backdrop-filter:blur(6px);background:rgba(15,34,64,.25)}
+.btn-line::after{background:#fff}
+.btn-line:hover{color:var(--navy);border-color:#fff}
+.btn .ar{width:18px;height:18px;transition:transform .3s}
+.btn:hover .ar{transform:translateX(4px)}
 
-/* Top bar */
-.topbar{background:var(--navy-deep);color:var(--ice);font-size:13.5px}
+/* Topbar */
+.topbar{background:var(--navy-deep);color:var(--ice);font-size:13.5px;position:relative;z-index:60}
 .topbar .wrap{display:flex;justify-content:space-between;gap:20px;padding:9px 0;flex-wrap:wrap}
 .topbar a{text-decoration:none;color:#fff}
 .topbar a:hover{color:var(--steel)}
-.topbar .mails{display:flex;gap:26px;flex-wrap:wrap}
+.topbar .mails{display:flex;gap:28px;flex-wrap:wrap}
 .topbar b{font-weight:600;color:var(--steel);margin-right:6px}
+.topbar .note{display:flex;align-items:center;gap:8px}
+.topbar .note img{width:14px}
 
 /* Header */
-header.site{position:sticky;top:0;z-index:50;background:var(--navy);border-bottom:1px solid var(--navy-line)}
-header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:86px}
-.brand img{height:68px;width:auto}
-nav.main ul{list-style:none;margin:0;padding:0;display:flex;gap:6px;align-items:center}
+header.site{position:sticky;top:0;z-index:50;background:rgba(15,34,64,.86);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--navy-line);transition:background .3s}
+header.site.scrolled{background:rgba(9,22,41,.96)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:88px;transition:height .3s}
+header.site.scrolled .wrap{height:72px}
+.brand img{height:70px;width:auto;transition:height .3s}
+header.site.scrolled .brand img{height:56px}
+nav.main ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;align-items:center}
 nav.main > ul > li{position:relative}
-nav.main > ul > li:not(.nav-cta) > a,nav.main > ul > li > button{display:flex;align-items:center;gap:6px;padding:12px 16px;color:#fff;text-decoration:none;font:600 15.5px var(--font);background:none;border:0;cursor:pointer}
-nav.main > ul > li:not(.nav-cta) > a:hover,nav.main > ul > li > button:hover{color:var(--steel)}
-nav.main .caret{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px)}
-.drop{position:absolute;top:100%;left:0;min-width:290px;background:#fff;border-radius:4px;padding:10px;box-shadow:0 22px 50px rgba(10,24,47,.28);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}
-.drop::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--maple);border-radius:4px 4px 0 0}
+nav.main > ul > li:not(.nav-cta) > a,nav.main > ul > li > button{display:flex;align-items:center;gap:7px;padding:12px 16px;color:#fff;text-decoration:none;font:600 15.5px var(--font);background:none;border:0;cursor:pointer;position:relative}
+nav.main > ul > li:not(.nav-cta) > a::after,nav.main > ul > li > button::after{content:"";position:absolute;left:16px;right:16px;bottom:6px;height:2px;background:var(--maple);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+nav.main > ul > li:hover > a::after,nav.main > ul > li:hover > button::after,nav.main a[aria-current]::after{transform:scaleX(1)}
+nav.main .caret{width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .3s}
+nav.main li:hover .caret{transform:rotate(225deg) translate(-2px,-1px)}
+.drop{position:absolute;top:calc(100% + 6px);left:0;min-width:300px;background:#fff;border-radius:4px;padding:10px;box-shadow:0 30px 60px rgba(9,22,41,.32);opacity:0;visibility:hidden;transform:translateY(10px);transition:.25s}
+.drop::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--maple),var(--steel));border-radius:4px 4px 0 0}
+.drop::after{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
 nav.main li:hover .drop,nav.main li:focus-within .drop{opacity:1;visibility:visible;transform:none}
-.drop a{display:block;padding:10px 14px;color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;border-radius:3px}
-.drop a:hover{background:var(--frost);color:var(--navy)}
+.drop a{display:flex;align-items:center;gap:12px;padding:11px 14px;color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;border-radius:3px;transition:background .2s,padding .2s}
+.drop a::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--steel);flex:none;transition:background .2s}
+.drop a:hover{background:var(--frost);color:var(--navy);padding-left:18px}
+.drop a:hover::before{background:var(--maple)}
 .nav-cta{margin-left:14px}
-.burger{display:none;background:none;border:1.5px solid var(--navy-line);border-radius:4px;width:48px;height:44px;cursor:pointer;position:relative}
+.nav-cta .btn{padding:14px 22px}
+.burger{display:none;background:none;border:1.5px solid rgba(142,180,240,.3);border-radius:4px;width:48px;height:44px;cursor:pointer;position:relative}
 .burger span,.burger span::before,.burger span::after{position:absolute;left:12px;width:22px;height:2px;background:#fff;content:"";transition:.25s}
 .burger span{top:21px}.burger span::before{left:0;top:-7px}.burger span::after{left:0;top:7px}
 .burger[aria-expanded="true"] span{background:transparent}
@@ -75,162 +85,228 @@ nav.main li:hover .drop,nav.main li:focus-within .drop{opacity:1;visibility:visi
 .burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
 
 /* Hero */
-.hero{position:relative;background:var(--navy);color:#fff;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:
-  repeating-linear-gradient(115deg,transparent 0 46px,rgba(142,180,240,.05) 46px 48px);pointer-events:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center;padding:78px 0 120px}
-.hero h1{font-size:clamp(40px,5.4vw,74px);margin:0 0 26px;color:#fff}
-.hero h1 .company{display:block;font-size:.36em;font-stretch:110%;font-style:normal;font-weight:600;color:var(--steel);letter-spacing:.01em;margin-bottom:18px;line-height:1.2}
-.hero p.lead{font-size:19px;color:var(--ice);max-width:520px;margin:0 0 36px}
+.hero{padding:0;background:var(--navy-deep);color:#fff;overflow:hidden;min-height:min(860px,calc(100vh - 40px));display:flex;align-items:center;margin-top:-89px;padding-top:89px}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 30%;transform:scale(1.12);transition:transform 3.2s cubic-bezier(.2,.7,.2,1)}
+.hero.on .hero-bg img{transform:scale(1.02)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(9,22,41,.97) 0%,rgba(9,22,41,.9) 30%,rgba(15,34,64,.55) 56%,rgba(15,34,64,.08) 82%),
+  linear-gradient(0deg,#091629 0%,rgba(9,22,41,.85) 12%,transparent 45%)}
+.baffles{position:absolute;inset:0;display:grid;grid-template-columns:repeat(14,1fr);z-index:3;pointer-events:none}
+.baffles i{display:block;background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.14) 0 1px,transparent 1px 4px),
+  linear-gradient(90deg,#8e9aa8,#e8ecf1 34%,#aab4c0 60%,#d3dae2 82%,#7d8896);
+  border-right:1px solid rgba(9,22,41,.35);transform-origin:top;transition:transform 1s var(--ease)}
+.hero.on .baffles i{transform:scaleY(0)}
+.airflow{position:absolute;right:4%;top:0;width:44%;height:70%;z-index:2;opacity:.55;pointer-events:none}
+.airflow path{fill:none;stroke:url(#airGrad);stroke-width:1.4;stroke-linecap:round;stroke-dasharray:60 340;animation:air 7s linear infinite}
+.airflow path:nth-child(2){animation-delay:-1.4s;animation-duration:8s}
+.airflow path:nth-child(3){animation-delay:-3s;animation-duration:6.5s}
+.airflow path:nth-child(4){animation-delay:-4.6s;animation-duration:9s}
+.airflow path:nth-child(5){animation-delay:-2.2s;animation-duration:7.5s}
+.airflow path:nth-child(6){animation-delay:-5.4s;animation-duration:8.5s}
+@keyframes air{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}
+.hero .wrap{position:relative;z-index:4;padding:80px 0 150px}
+.hero-copy{max-width:820px}
+.hero .company{display:inline-flex;align-items:center;gap:12px;font-stretch:112%;font-weight:600;color:var(--ice);font-size:16px;padding:8px 16px 8px 10px;border:1px solid rgba(202,220,249,.25);border-radius:40px;background:rgba(9,22,41,.4);backdrop-filter:blur(8px);margin-bottom:28px}
+.hero .company img{width:22px}
+.hero h1{font-size:clamp(38px,5.3vw,80px);margin:0 0 28px;color:#fff;line-height:.98}
+.line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.line > span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease)}
+.hero.on .line > span{transform:none}
+.hero.on .line:nth-child(1) > span{transition-delay:1.05s}
+.hero.on .line:nth-child(2) > span{transition-delay:1.17s}
+.hero.on .line:nth-child(3) > span{transition-delay:1.29s}
+.hero h1 .steel{color:transparent;background:linear-gradient(100deg,#fff 0%,var(--ice) 35%,var(--steel) 55%,#fff 80%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;animation:sheen 6s ease-in-out infinite 2.6s}
+@keyframes sheen{0%,100%{background-position:0 0}50%{background-position:100% 0}}
+.fade{opacity:0;transform:translateY(18px);transition:opacity .9s,transform .9s var(--ease)}
+.hero.on .fade{opacity:1;transform:none}
+.hero.on .fade.d1{transition-delay:1.5s}.hero.on .fade.d2{transition-delay:1.65s}.hero.on .fade.d3{transition-delay:1.9s}
+.hero p.lead{font-size:20px;color:var(--ice);max-width:540px;margin:0 0 40px;line-height:1.55}
 .hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
-.hero-visual{position:relative;aspect-ratio:4/3.3}
-.hood-frame{position:absolute;inset:0;border-radius:4px;overflow:hidden;background:#24344f}
-.hood-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);filter:saturate(.75) brightness(.85);transition:transform 2.4s cubic-bezier(.2,.7,.2,1),filter 2.4s}
-.hood-frame.on img{transform:scale(1);filter:none}
-.baffles{position:absolute;inset:0;display:grid;grid-template-columns:repeat(9,1fr);pointer-events:none}
-.baffles i{display:block;background:linear-gradient(90deg,#b7c1cd,#eef1f5 38%,#9aa6b4 62%,#d9dfe6);border-right:1px solid rgba(15,34,64,.25);transform-origin:top;transition:transform .9s cubic-bezier(.7,0,.25,1)}
-.hood-frame.on .baffles i{transform:scaleY(0)}
-.hero-visual .leaf-tag{position:absolute;left:-34px;bottom:-40px;width:188px;background:#fff;color:var(--ink);border-radius:4px;padding:18px 18px 16px;box-shadow:0 24px 50px rgba(5,14,30,.35);opacity:0;transform:translateY(16px);transition:.7s 1.5s}
-.hood-frame.on ~ .leaf-tag{opacity:1;transform:none}
-.leaf-tag img{width:34px;margin-bottom:8px}
-.leaf-tag strong{display:block;font-stretch:125%;font-style:italic;font-weight:800;font-size:46px;line-height:1;color:var(--navy)}
-.leaf-tag span{font-size:14px;color:var(--muted);line-height:1.35;display:block;margin-top:6px}
-.hero-visual .edge{position:absolute;right:-14px;top:24px;bottom:24px;width:14px;background:linear-gradient(90deg,var(--maple),var(--maple-dark));border-radius:0 3px 3px 0}
+.years-card{position:absolute;right:0;bottom:160px;z-index:4;width:250px;padding:24px 24px 22px;border-radius:6px;background:rgba(9,22,41,.55);border:1px solid rgba(202,220,249,.22);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.years-card img{width:30px;margin-bottom:12px}
+.years-card strong{display:block;font-stretch:125%;font-style:normal;font-weight:900;font-size:64px;line-height:.9;color:#fff}
+.years-card strong sup{color:var(--maple);font-size:.5em;vertical-align:top}
+.years-card span{display:block;margin-top:8px;color:var(--ice);font-size:15px;line-height:1.35}
+.canopy{position:absolute;left:0;right:0;bottom:-1px;z-index:5;width:100%;height:90px;display:block}
+.scroll-cue{position:absolute;left:50%;bottom:84px;z-index:6;width:26px;height:42px;border:1.5px solid rgba(202,220,249,.5);border-radius:14px;transform:translateX(-50%)}
+.scroll-cue::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
 
-/* Steel plate (certifications) */
-.plate-wrap{position:relative;z-index:2;margin-top:-54px}
-.plate{display:grid;grid-template-columns:repeat(4,1fr);background:
-  repeating-linear-gradient(0deg,rgba(255,255,255,.18) 0 1px,transparent 1px 3px),
-  linear-gradient(100deg,var(--metal-2),var(--metal-1) 30%,#d3d9e0 55%,var(--metal-1) 78%,#b9c2cc);
-  border-radius:4px;box-shadow:0 18px 40px rgba(10,24,47,.18),inset 0 1px 0 rgba(255,255,255,.8);position:relative}
-.plate > div{padding:26px 26px 24px 54px;position:relative;border-left:1px solid rgba(15,34,64,.14)}
+/* Steel plate */
+.plate-wrap{position:relative;z-index:7;margin-top:-60px;background:var(--navy-deep)}
+.plate{display:grid;grid-template-columns:repeat(4,1fr);border-radius:6px;position:relative;overflow:hidden;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.22) 0 1px,transparent 1px 3px),linear-gradient(100deg,var(--metal-2),var(--metal-1) 28%,#cfd6de 52%,var(--metal-1) 76%,#b3bdc9);
+  box-shadow:0 30px 60px rgba(9,22,41,.22),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(9,22,41,.15)}
+.plate::after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-18deg);animation:glint 6s ease-in-out infinite 3s}
+@keyframes glint{0%{left:-40%}35%,100%{left:130%}}
+.plate > div{padding:30px 26px 30px 70px;position:relative;display:flex;align-items:center;min-height:96px;border-left:1px solid rgba(9,22,41,.13)}
 .plate > div:first-child{border-left:0}
-.plate > div::before{content:"";position:absolute;left:24px;top:31px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#8d98a6 70%);box-shadow:inset 0 0 0 1px rgba(15,34,64,.3)}
-.plate b{display:block;font-stretch:118%;font-weight:800;font-size:17px;color:var(--navy);line-height:1.25}
-.plate span{font-size:13.5px;color:#46546b}
-
-/* Section basics */
-section{padding:110px 0}
-h2.display{font-size:clamp(34px,4.2vw,56px);margin:0;color:var(--navy)}
-.intro{max-width:560px;color:var(--muted);font-size:18px;margin:18px 0 0}
+.plate .rivet{position:absolute;left:26px;top:50%;width:28px;height:28px;margin-top:-14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#a3adba 55%,#6e7a89);box-shadow:0 2px 3px rgba(9,22,41,.3),inset 0 0 0 1px rgba(9,22,41,.25);display:grid;place-items:center}
+.plate .rivet svg{width:14px;height:14px;stroke:var(--navy);stroke-width:2.6;fill:none}
+.plate b{display:block;font-stretch:120%;font-weight:800;font-size:18px;color:var(--navy);line-height:1.25}
 
 /* Services */
-.services{background:var(--paper)}
-.svc-head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:56px}
-.svc-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:60px;align-items:start}
-.svc-list{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--navy)}
-.svc-list li{border-bottom:1px solid #d4ddeb}
-.svc-list a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;padding:24px 6px 24px 0;text-decoration:none;color:var(--navy);position:relative}
-.svc-list a h3{margin:0;font-stretch:115%;font-weight:700;font-size:clamp(21px,2.1vw,27px);line-height:1.2;transition:transform .3s,color .3s}
-.svc-list a .go{width:44px;height:44px;border-radius:50%;border:1.5px solid #c3cfe2;display:grid;place-items:center;transition:.3s;flex:none}
-.svc-list a .go svg{width:16px;height:16px;transition:transform .3s}
-.svc-list a::before{content:"";position:absolute;left:-18px;top:50%;width:6px;height:0;background:var(--maple);transform:translateY(-50%);transition:height .3s}
-.svc-list li.active a h3{transform:translateX(10px)}
-.svc-list li.active a::before{height:56%}
-.svc-list li.active a .go{background:var(--navy);border-color:var(--navy);color:#fff}
-.svc-list li.active a .go svg{transform:rotate(-45deg)}
+.services{background:var(--navy-deep);color:#fff;margin-top:-60px;padding-top:180px;padding-bottom:180px;overflow:hidden}
+.services::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--navy-line) 1px,transparent 1px),linear-gradient(90deg,var(--navy-line) 1px,transparent 1px);background-size:120px 120px;mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 70%);opacity:.6}
+.services .wrap{position:relative}
+.svc-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;margin-bottom:64px}
+.services h2{color:#fff}
+.svc-head p{margin:0;color:var(--ice);max-width:380px;font-size:18px}
+.svc-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:64px;align-items:start}
+.svc-list{list-style:none;margin:0;padding:0;border-top:1px solid rgba(202,220,249,.22)}
+.svc-list li{border-bottom:1px solid rgba(202,220,249,.22);position:relative}
+.svc-list li::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:linear-gradient(90deg,var(--maple),var(--steel));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.svc-list li.active::after{transform:scaleX(1)}
+.svc-list a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;padding:26px 4px 26px 0;text-decoration:none;color:rgba(255,255,255,.6);transition:color .3s}
+.svc-list a h3{margin:0;font-stretch:118%;font-weight:700;font-size:clamp(21px,2.2vw,29px);line-height:1.2;transition:transform .45s var(--ease)}
+.svc-list li.active a{color:#fff}
+.svc-list li.active a h3{transform:translateX(14px)}
+.svc-list .go{width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(202,220,249,.3);display:grid;place-items:center;transition:.35s}
+.svc-list .go svg{width:17px;height:17px;transition:transform .35s}
+.svc-list li.active .go{background:var(--maple);border-color:var(--maple)}
+.svc-list li.active .go svg{transform:rotate(-45deg)}
 .svc-list .m-img{display:none}
-.svc-stage{position:sticky;top:120px;aspect-ratio:4/3.4;border-radius:4px;overflow:hidden;background:var(--navy)}
-.svc-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .6s,transform 1.2s}
-.svc-stage img.show{opacity:1;transform:none}
-.svc-stage figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 28px 24px;color:#fff;background:linear-gradient(transparent,rgba(10,24,47,.85));display:flex;justify-content:space-between;align-items:end;gap:16px}
-.svc-stage figcaption strong{font-stretch:120%;font-style:italic;font-weight:800;font-size:24px;line-height:1.15}
-.svc-stage figcaption a{color:#fff;font-size:14.5px;font-weight:600;white-space:nowrap;text-underline-offset:4px}
+.svc-stage{position:sticky;top:110px;margin:0}
+.stage-frame{position:relative;aspect-ratio:4/3.2;border-radius:6px;overflow:hidden;background:var(--navy);box-shadow:0 40px 80px rgba(0,0,0,.45)}
+.stage-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .7s,transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.stage-frame img.show{opacity:1;transform:scale(1)}
+.wipe{position:absolute;top:0;bottom:0;left:-30%;width:26%;z-index:3;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55) 45%,rgba(202,220,249,.9) 50%,rgba(255,255,255,.55) 55%,transparent);mix-blend-mode:soft-light;pointer-events:none}
+.wipe.go{animation:wipe .9s var(--ease)}
+@keyframes wipe{to{left:110%}}
+.corner{position:absolute;width:38px;height:38px;border:3px solid #fff;z-index:4;opacity:.9}
+.corner.tl{top:18px;left:18px;border-right:0;border-bottom:0}
+.corner.br{bottom:18px;right:18px;border-left:0;border-top:0;border-color:var(--maple)}
+.stage-cap{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:22px}
+.stage-cap strong{font-stretch:122%;font-style:normal;font-weight:800;font-size:26px;line-height:1.15}
+.stage-cap a{color:#fff;font-weight:600;font-size:15px;display:inline-flex;gap:10px;align-items:center;text-decoration:none;border-bottom:1.5px solid var(--maple);padding-bottom:3px;white-space:nowrap}
+.stage-cap .ar{width:16px;height:16px}
+.stage-deco{position:absolute;right:-26px;top:40px;bottom:-26px;width:60%;border-radius:6px;z-index:-1;background:repeating-linear-gradient(90deg,rgba(142,180,240,.18) 0 2px,transparent 2px 16px)}
 
 /* Advantages */
-.adv{background:#fff;position:relative}
-.adv-grid{display:grid;grid-template-columns:1.1fr .95fr;gap:70px;align-items:center}
-.years{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end;margin:28px 0 34px}
-.years .num{font-stretch:125%;font-style:italic;font-weight:900;font-size:clamp(130px,15vw,210px);line-height:.8;color:var(--navy);letter-spacing:-.04em;position:relative}
-.years .num sup{font-size:.36em;color:var(--maple);vertical-align:top;position:relative;top:.05em;margin-left:4px}
-.years p{margin:0 0 8px;font-size:19px;color:var(--muted);max-width:240px;line-height:1.4}
-.adv-photo{border-radius:4px;overflow:hidden;aspect-ratio:16/8}
-.adv-photo img{width:100%;height:100%;object-fit:cover}
+.adv{background:var(--paper);overflow:hidden}
+.adv-grid{display:grid;grid-template-columns:1.12fr .9fr;gap:80px;align-items:center}
+.years{display:flex;gap:30px;align-items:flex-end;margin:34px 0 44px}
+.years .num{font-stretch:125%;font-style:normal;font-weight:900;font-size:clamp(140px,16vw,240px);line-height:.78;letter-spacing:-.045em;background:linear-gradient(180deg,var(--navy) 30%,var(--navy-mid));-webkit-background-clip:text;background-clip:text;color:transparent;display:flex}
+.years .num sup{font-size:.38em;color:var(--maple);-webkit-text-fill-color:var(--maple);line-height:1;margin-left:6px}
+.years p{margin:0 0 10px;font-size:19px;color:var(--muted);max-width:230px;line-height:1.4}
+.adv-photo{position:relative}
+.adv-photo .ph{border-radius:6px;overflow:hidden;aspect-ratio:16/9;position:relative;z-index:1}
+.adv-photo img{width:100%;height:115%;object-fit:cover;will-change:transform}
+.adv-photo::before{content:"";position:absolute;left:-26px;bottom:-26px;width:62%;height:70%;background:repeating-linear-gradient(135deg,var(--steel) 0 2px,transparent 2px 12px);opacity:.5;border-radius:6px}
+.adv-photo::after{content:"";position:absolute;right:-12px;top:30px;width:12px;height:42%;background:var(--maple);border-radius:0 3px 3px 0;z-index:2}
 
-.tag{background:var(--frost);border-radius:6px;position:relative;padding:0 0 18px;box-shadow:0 28px 60px rgba(15,34,64,.14);transform:rotate(1.6deg)}
-.tag::before{content:"";position:absolute;top:22px;right:26px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:inset 0 2px 4px rgba(15,34,64,.25)}
-.tag-top{background:var(--navy);color:#fff;border-radius:6px 6px 0 0;padding:24px 70px 22px 28px;display:flex;gap:14px;align-items:center}
-.tag-top img{width:38px}
-.tag-top strong{display:block;font-stretch:120%;font-weight:800;font-style:italic;font-size:21px;line-height:1.1}
+.tag{background:#fff;border-radius:8px;position:relative;padding:0 0 22px;box-shadow:0 40px 80px rgba(15,34,64,.18),0 0 0 1px rgba(15,34,64,.05);transform:rotate(2deg);transition:transform .6s var(--ease)}
+.tag.in{transform:rotate(2deg)}
+.tag.in:hover{transform:rotate(0)}
+.tag::before{content:"";position:absolute;top:26px;right:28px;width:22px;height:22px;border-radius:50%;background:var(--paper);box-shadow:inset 0 2px 4px rgba(15,34,64,.35);z-index:2}
+.tag::after{content:"";position:absolute;top:-70px;right:38px;width:2px;height:96px;background:linear-gradient(var(--metal-2),#8e99a7);transform:rotate(-8deg);transform-origin:bottom}
+.tag-top{background:linear-gradient(120deg,var(--navy),var(--navy-mid));color:#fff;border-radius:8px 8px 0 0;padding:28px 78px 24px 30px;display:flex;gap:16px;align-items:center;position:relative;overflow:hidden}
+.tag-top::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 22px,rgba(142,180,240,.08) 22px 24px)}
+.tag-top img{width:40px;position:relative;z-index:1}
+.tag-top div{position:relative;z-index:1}
+.tag-top strong{display:block;font-stretch:120%;font-weight:800;font-style:normal;font-size:22px;line-height:1.1}
 .tag-top span{font-size:13.5px;color:var(--ice)}
-.tag ul{list-style:none;margin:0;padding:8px 28px 0}
-.tag li{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px dashed #b9c9e4;font-weight:600;font-size:17px;color:var(--navy)}
+.tag ul{list-style:none;margin:0;padding:10px 30px 0}
+.tag li{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px dashed #c4d2e8;font-weight:600;font-size:17px;color:var(--navy)}
 .tag li:last-child{border-bottom:0}
-.box{width:26px;height:26px;border:2px solid var(--navy);border-radius:3px;display:grid;place-items:center;flex:none;background:#fff}
+.box{width:27px;height:27px;border:2px solid var(--navy);border-radius:4px;display:grid;place-items:center;flex:none;background:var(--frost)}
 .box svg{width:18px;height:18px;stroke:var(--maple);stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
 .tag.ticked .box svg{animation:tick .45s forwards}
 @keyframes tick{to{stroke-dashoffset:0}}
-.tag-foot{margin:6px 28px 0;padding-top:14px;border-top:2px solid var(--navy);display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.tag-foot{margin:8px 30px 0;padding-top:16px;border-top:2px solid var(--navy);display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600}
 
 /* Clients */
-.clients{background:var(--navy);color:#fff;padding:90px 0;overflow:hidden}
-.clients .wrap{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:44px;flex-wrap:wrap}
-.clients h2{color:#fff}
-.clients p{color:var(--ice);margin:0;max-width:360px}
-.marquee{display:flex;width:max-content;animation:slide 34s linear infinite}
-.marquee:hover{animation-play-state:paused}
-.logo-tile{width:250px;height:150px;margin-right:22px;background:#fff;border-radius:4px;display:grid;place-items:center;padding:26px 34px;flex:none}
-.logo-tile img{max-height:96px;max-width:100%;object-fit:contain}
+.clients{background:#fff;padding:100px 0;overflow:hidden;border-top:1px solid #e3e9f3}
+.clients .wrap{text-align:center;margin-bottom:50px}
+.clients h2{font-size:clamp(30px,3.4vw,46px)}
+.marquee-wrap{mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee{display:flex;width:max-content;animation:slide 36s linear infinite}
+.marquee-wrap:hover .marquee{animation-play-state:paused}
+.logo-tile{width:260px;height:150px;margin-right:24px;background:var(--paper);border:1px solid #e1e8f2;border-radius:6px;display:grid;place-items:center;padding:28px 38px;flex:none;transition:border-color .3s,background .3s}
+.logo-tile:hover{border-color:var(--steel);background:#fff}
+.logo-tile img{max-height:92px;max-width:100%;object-fit:contain;mix-blend-mode:multiply}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* Locations */
-.locations{background:var(--frost)}
-.loc-head{margin-bottom:54px}
-.loc-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:26px}
-.prov{background:#fff;border-radius:4px;padding:40px 40px 34px;display:flex;flex-direction:column;position:relative;overflow:hidden;border-top:6px solid var(--navy)}
-.prov.ab{border-top-color:var(--maple)}
-.prov h3{margin:0 0 6px;font-stretch:125%;font-style:italic;font-weight:800;font-size:clamp(26px,2.6vw,34px);color:var(--navy);line-height:1.1}
-.prov .count{color:var(--muted);font-size:15px;margin:0 0 26px}
-.cities{list-style:none;margin:0 0 30px;padding:0;columns:3;column-gap:24px}
+.locations{background:var(--frost);overflow:hidden}
+.locations::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(15,34,64,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(15,34,64,.06) 1px,transparent 1px);background-size:80px 80px}
+.locations .wrap{position:relative}
+.loc-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+.loc-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
+.prov{background:#fff;border-radius:8px;padding:44px 44px 36px;display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 20px 50px rgba(15,34,64,.08);transition:transform .5s var(--ease),box-shadow .5s}
+.prov:hover{transform:translateY(-6px);box-shadow:0 34px 70px rgba(15,34,64,.15)}
+.prov .big{position:absolute;right:-10px;bottom:-34px;font-stretch:125%;font-style:normal;font-weight:900;font-size:190px;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(15,34,64,.08);pointer-events:none}
+.prov-top{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.pin{width:48px;height:48px;border-radius:50%;background:var(--navy);display:grid;place-items:center;position:relative;flex:none}
+.prov.ab .pin{background:var(--maple)}
+.pin::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid currentColor;color:var(--navy);animation:ping 2.4s ease-out infinite}
+.prov.ab .pin::before{color:var(--maple)}
+@keyframes ping{from{transform:scale(1);opacity:.6}to{transform:scale(1.8);opacity:0}}
+.pin svg{width:20px;height:20px;fill:#fff}
+.prov h3{margin:0;font-stretch:125%;font-style:normal;font-weight:800;font-size:clamp(28px,2.8vw,38px);color:var(--navy);line-height:1.05}
+.cities{list-style:none;margin:0 0 34px;padding:0;columns:3;column-gap:24px;position:relative}
 .ab .cities{columns:2}
-.cities li{padding:7px 0;font-weight:500;break-inside:avoid;display:flex;gap:10px;align-items:center}
-.cities li::before{content:"";width:7px;height:7px;border:2px solid var(--steel);border-radius:50%;flex:none}
-.prov .foot{margin-top:auto;padding-top:22px;border-top:1px solid #dde5f2;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.prov .foot a{font-weight:600;font-size:15px;text-underline-offset:4px;color:var(--navy)}
-.prov .foot a.mail{text-decoration:none;color:var(--muted);font-weight:500}
+.cities li{padding:8px 0;font-weight:500;break-inside:avoid;display:flex;gap:11px;align-items:center;transition:color .2s,transform .2s}
+.cities li::before{content:"";width:8px;height:8px;border:2px solid var(--steel);border-radius:50%;flex:none;transition:background .2s,border-color .2s}
+.cities li:hover{color:var(--navy);transform:translateX(4px)}
+.cities li:hover::before{background:var(--maple);border-color:var(--maple)}
+.prov .foot{margin-top:auto;padding-top:24px;border-top:1px solid #dfe7f3;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;position:relative}
+.prov .foot a{font-weight:700;font-size:15px;text-decoration:none;color:var(--navy);display:inline-flex;gap:8px;align-items:center}
+.prov .foot a .ar{width:16px;height:16px;transition:transform .3s}
+.prov .foot a:hover .ar{transform:translateX(4px)}
+.prov .foot a.mail{color:var(--muted);font-weight:500}
 .prov .foot a.mail:hover{color:var(--navy)}
 
-/* Estimate band */
-.estimate{position:relative;padding:120px 0;color:#fff;background:var(--navy-deep);overflow:hidden}
-.estimate .bg{position:absolute;inset:0;background:url("images/hood-and-vent-cleaning.jpg") center/cover;opacity:.32}
-.estimate::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy-deep) 25%,rgba(10,24,47,.4))}
-.estimate .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+/* Estimate */
+.estimate{padding:150px 0;color:#fff;background:var(--navy-deep);overflow:hidden}
+.estimate .bg{position:absolute;inset:-12% 0;background:url("images/estimate-hood.jpg") center/cover;will-change:transform}
+.estimate::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,22,41,.96) 20%,rgba(9,22,41,.55) 60%,rgba(9,22,41,.25))}
+.estimate .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr 1fr;gap:70px;align-items:center}
 .estimate h2{color:#fff}
-.estimate p{color:var(--ice);font-size:18px;max-width:480px;margin:20px 0 34px}
+.estimate p{color:var(--ice);font-size:19px;max-width:480px;margin:22px 0 38px}
 .reach{display:grid;gap:12px}
-.reach a{display:flex;align-items:center;gap:18px;padding:18px 22px;background:rgba(255,255,255,.06);border:1px solid rgba(202,220,249,.2);border-radius:4px;text-decoration:none;transition:background .2s,border-color .2s}
-.reach a:hover{background:rgba(255,255,255,.12);border-color:var(--steel)}
-.reach img{width:34px;height:34px}
-.reach .ico{width:34px;height:34px;border-radius:50%;background:var(--maple);display:grid;place-items:center;flex:none}
-.reach .ico svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2}
+.reach a{display:flex;align-items:center;gap:18px;padding:20px 24px;background:rgba(9,22,41,.5);border:1px solid rgba(202,220,249,.18);border-radius:6px;text-decoration:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .3s,border-color .3s,transform .3s var(--ease)}
+.reach a:hover{background:rgba(22,48,90,.7);border-color:var(--steel);transform:translateX(-6px)}
+.reach img{width:38px;height:38px}
+.reach .ico{width:38px;height:38px;border-radius:50%;background:var(--maple);display:grid;place-items:center;flex:none}
+.reach .ico svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2}
 .reach small{display:block;color:var(--steel);font-size:13px}
-.reach b{font-weight:600;font-size:16.5px;word-break:break-word}
+.reach b{font-weight:600;font-size:17px;word-break:break-word}
+.reach .ar{width:18px;height:18px;margin-left:auto;flex:none;opacity:.6}
 
 /* Footer */
-footer{background:var(--navy);color:var(--ice);padding:80px 0 0;font-size:15.5px}
-.f-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px}
-footer h4{margin:0 0 18px;color:#fff;font-stretch:115%;font-size:17px}
+footer{background:var(--navy);color:var(--ice);padding:0;font-size:15.5px;position:relative}
+.f-strip{height:8px;background:repeating-linear-gradient(0deg,rgba(255,255,255,.25) 0 1px,transparent 1px 3px),linear-gradient(90deg,var(--metal-2),var(--metal-1),var(--metal-2))}
+.f-grid{display:grid;grid-template-columns:1.3fr 1fr .8fr 1fr;gap:44px;padding:80px 0 60px}
+footer h4{margin:0 0 20px;color:#fff;font-stretch:118%;font-size:17px}
 footer ul{list-style:none;margin:0;padding:0}
-footer li{margin-bottom:10px}
-footer a{text-decoration:none;color:var(--ice)}
-footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
-.f-logo img{height:96px;width:auto;margin-bottom:16px}
-.f-contact p{margin:0 0 14px}
+footer li{margin-bottom:11px}
+footer a{text-decoration:none;color:var(--ice);transition:color .2s}
+footer a:hover{color:#fff}
+.f-logo img{height:100px;width:auto;margin-bottom:18px}
+.f-contact p{margin:0 0 16px}
 .f-contact small{display:block;color:var(--steel);font-size:13px}
 .social{display:flex;gap:10px;margin-top:22px}
-.social a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center}
-.social a:hover{background:rgba(255,255,255,.18)}
+.social a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:background .2s,transform .2s}
+.social a:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
 .social img{width:24px;height:24px}
-.f-bottom{border-top:1px solid var(--navy-line);padding:22px 0;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--steel)}
+.f-bottom{border-top:1px solid var(--navy-line);padding:24px 0;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--steel)}
 .f-bottom a{color:#fff;font-weight:600}
+
+/* Scroll reveal */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
 
 /* Responsive */
 @media (max-width:1080px){
-  nav.main{position:fixed;inset:86px 0 auto 0;background:var(--navy);border-top:1px solid var(--navy-line);max-height:calc(100vh - 86px);overflow:auto;display:none;padding:12px 24px 28px}
+  nav.main{position:fixed;inset:72px 0 auto 0;background:var(--navy-deep);border-top:1px solid var(--navy-line);max-height:calc(100vh - 72px);overflow:auto;display:none;padding:12px 24px 28px}
   nav.main.open{display:block}
   nav.main ul{flex-direction:column;align-items:stretch;gap:0}
-  nav.main > ul > li:not(.nav-cta) > a,nav.main > ul > li > button{padding:14px 0;width:100%;justify-content:space-between;border-bottom:1px solid var(--navy-line)}
-  .drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:transparent;padding:4px 0 8px 12px;display:none}
+  nav.main > ul > li:not(.nav-cta) > a,nav.main > ul > li > button{padding:15px 0;width:100%;justify-content:space-between;border-bottom:1px solid var(--navy-line)}
+  nav.main > ul > li > a::after,nav.main > ul > li > button::after{display:none}
+  .drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:transparent;padding:4px 0 8px 8px;display:none}
   .drop::before{display:none}
   nav.main li.sub-open .drop{display:block}
   .drop a{color:var(--ice)}
@@ -238,52 +314,72 @@ footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
   .nav-cta{margin:18px 0 0}
   .nav-cta .btn{width:100%;justify-content:center}
   .burger{display:block}
-  .hero .wrap{grid-template-columns:1fr;padding:56px 0 110px}
-  .hero-visual{max-width:640px;margin-left:34px}
+  header.site .wrap,header.site.scrolled .wrap{height:72px}
+  .brand img,header.site.scrolled .brand img{height:54px}
+  .hero{margin-top:-73px;padding-top:73px}
+  .years-card{display:none}
+  .airflow{width:70%}
   .plate{grid-template-columns:repeat(2,1fr)}
   .plate > div:nth-child(3){border-left:0}
-  .plate > div:nth-child(n+3){border-top:1px solid rgba(15,34,64,.14)}
+  .plate > div:nth-child(n+3){border-top:1px solid rgba(9,22,41,.13)}
+  .svc-head{grid-template-columns:1fr}
   .svc-grid,.adv-grid,.loc-grid,.estimate .wrap{grid-template-columns:1fr}
   .svc-stage{display:none}
-  .svc-list .m-img{display:block;grid-column:1/-1;aspect-ratio:16/9;object-fit:cover;width:100%;border-radius:4px;margin:0}
+  .svc-list .m-img{display:block;grid-column:1/-1;aspect-ratio:16/9;object-fit:cover;width:100%;border-radius:6px}
+  .svc-list a{color:#fff}
   .svc-list li.active a h3{transform:none}
-  .svc-list a::before{display:none}
+  .adv-grid{gap:90px}
+  .tag{max-width:560px}
   .f-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
   body{font-size:16px}
-  section{padding:80px 0}
+  section{padding:84px 0}
   .topbar .wrap{justify-content:center;text-align:center}
-  .topbar .note{display:none}
-  .brand img{height:56px}
-  header.site .wrap{height:76px}
-  nav.main{inset:76px 0 auto 0;max-height:calc(100vh - 76px)}
-  .hero-visual{margin-left:0}
-  .hero .wrap{padding:44px 0 130px}
   .topbar .mails{gap:4px 18px;justify-content:center}
-  .hero-visual .leaf-tag{left:12px;bottom:-34px;width:160px}
-  .leaf-tag strong{font-size:38px}
-  .hero-visual .edge{display:none}
+  .topbar .note{display:none}
+  .hero{min-height:0}
+  .hero .wrap{padding:56px 0 110px}
+  .hero-bg img{object-position:70% 30%}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(9,22,41,.55),rgba(9,22,41,.85) 55%,#091629)}
+  .baffles{grid-template-columns:repeat(7,1fr)}
+  .scroll-cue{display:none}
+  .hero p.lead{font-size:18px}
+  .ctas .btn{width:100%;justify-content:center}
+  .plate-wrap{margin-top:-60px}
   .plate{grid-template-columns:1fr}
-  .plate > div{border-left:0;border-top:1px solid rgba(15,34,64,.14)}
+  .plate > div{border-left:0!important;border-top:1px solid rgba(9,22,41,.13);padding:22px 22px 22px 66px}
   .plate > div:first-child{border-top:0}
-  .years{grid-template-columns:1fr;gap:10px}
+  .services{padding-top:140px;padding-bottom:130px}
+  .canopy{height:46px}
+  .tag.in{transform:none}
+  .years{flex-direction:column;align-items:flex-start;gap:14px}
   .tag{transform:none}
+  .tag::after{display:none}
   .cities{columns:2}
-  .prov{padding:30px 24px}
-  .logo-tile{width:190px;height:120px}
+  .prov{padding:32px 24px 28px}
+  .prov .big{font-size:120px}
+  .logo-tile{width:190px;height:116px;padding:20px 26px}
+  .estimate{padding:100px 0}
   .f-grid{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .baffles{display:none}
-  .hood-frame img{transform:none;filter:none}
-  .hero-visual .leaf-tag{opacity:1;transform:none}
+  .line > span,.fade,.rv{transform:none!important;opacity:1!important}
   .box svg{stroke-dashoffset:0}
 }
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="arrow" viewBox="0 0 16 16"><path d="M2 8h12M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="check" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+  </defs>
+</svg>
 
 <div class="topbar">
   <div class="wrap">
@@ -291,17 +387,17 @@ footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
       <a href="mailto:mbcleaning.bc@gmail.com"><b>British Columbia</b>mbcleaning.bc@gmail.com</a>
       <a href="mailto:mbcleaning.ab@gmail.com"><b>Alberta</b>mbcleaning.ab@gmail.com</a>
     </div>
-    <span class="note">Free estimates and references upon request</span>
+    <span class="note"><img src="images/maple-leaf.png" alt="">Free estimates and references upon request</span>
   </div>
 </div>
 
-<header class="site">
+<header class="site" id="header">
   <div class="wrap">
     <a class="brand" href="https://www.mb-cleaning.ca/"><img src="images/mb-facility-services-logo.png" alt="MB Facility Services logo"></a>
     <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
     <nav class="main" id="mainnav" aria-label="Main">
       <ul>
-        <li><a href="https://www.mb-cleaning.ca/">Home</a></li>
+        <li><a href="https://www.mb-cleaning.ca/" aria-current="page">Home</a></li>
         <li class="has-sub">
           <button type="button" aria-haspopup="true">Services <span class="caret"></span></button>
           <div class="drop">
@@ -328,94 +424,110 @@ footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
 </header>
 
 <main>
-  <section class="hero" aria-label="Introduction" style="padding:0">
+  <section class="hero" id="hero" aria-label="Introduction">
+    <div class="hero-bg"><img src="images/hero-hood-technician.jpg" alt="MB Facility Services technician cleaning the baffle filters of a commercial kitchen exhaust hood"></div>
+    <svg class="airflow" viewBox="0 0 500 500" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="airGrad" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#CADCF9" stop-opacity="0"/><stop offset=".5" stop-color="#CADCF9"/><stop offset="1" stop-color="#8EB4F0" stop-opacity="0"/></linearGradient></defs>
+      <path d="M60 500 C 40 380, 120 330, 90 220 S 140 60, 110 0"/>
+      <path d="M150 500 C 130 400, 210 340, 180 240 S 220 80, 200 0"/>
+      <path d="M240 500 C 260 390, 200 320, 250 230 S 290 70, 270 0"/>
+      <path d="M330 500 C 310 400, 380 330, 350 230 S 380 90, 360 0"/>
+      <path d="M410 500 C 430 380, 370 320, 420 220 S 450 60, 430 0"/>
+      <path d="M480 500 C 470 400, 500 300, 470 200 S 490 70, 480 0"/>
+    </svg>
+    <div class="baffles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="wrap">
-      <div>
-        <h1 class="display"><span class="company">MB Facility Services</span>Commercial cleaning and hygiene services</h1>
-        <p class="lead">Specialized in commercial exhaust cleaning, kitchen deep cleaning, ceiling cleaning and washrooms sanitation.</p>
-        <div class="ctas">
-          <a class="btn btn-red" href="https://www.mb-cleaning.ca/contact">Get a free estimate</a>
+      <div class="hero-copy">
+        <span class="company fade d1"><img src="images/maple-leaf.png" alt="">MB Facility Services</span>
+        <h1 class="display">
+          <span class="line"><span>Commercial</span></span>
+          <span class="line"><span class="steel">cleaning and</span></span>
+          <span class="line"><span>hygiene services</span></span>
+        </h1>
+        <p class="lead fade d2">Specialized in commercial exhaust cleaning, kitchen deep cleaning, ceiling cleaning and washrooms sanitation.</p>
+        <div class="ctas fade d3">
+          <a class="btn btn-red" href="https://www.mb-cleaning.ca/contact">Get a free estimate <svg class="ar"><use href="#arrow"/></svg></a>
           <a class="btn btn-line" href="#services">Our services</a>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="hood-frame" id="hood">
-          <img src="images/hero-kitchen.jpg" alt="Clean stainless steel commercial kitchen with exhaust hood">
-          <div class="baffles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-        <span class="edge" aria-hidden="true"></span>
-        <div class="leaf-tag">
-          <img src="images/maple-leaf.png" alt="">
-          <strong>25+</strong>
-          <span>Over 25 years of experience</span>
-        </div>
+      <div class="years-card fade d3">
+        <img src="images/maple-leaf.png" alt="">
+        <strong>25<sup>+</sup></strong>
+        <span>Over 25 years of experience</span>
       </div>
     </div>
+    <span class="scroll-cue" aria-hidden="true"></span>
   </section>
 
   <div class="plate-wrap">
     <div class="wrap">
-      <div class="plate" aria-label="Certifications">
-        <div><b>ASTTBC Certified</b></div>
-        <div><b>Phil Ackland Certified</b></div>
-        <div><b>Fully Insured</b></div>
-        <div><b>WCB Cleared</b></div>
+      <div class="plate rv" aria-label="Certifications">
+        <div><span class="rivet"><svg viewBox="0 0 20 20" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><b>ASTTBC Certified</b></div>
+        <div><span class="rivet"><svg viewBox="0 0 20 20" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><b>Phil Ackland Certified</b></div>
+        <div><span class="rivet"><svg viewBox="0 0 20 20" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><b>Fully Insured</b></div>
+        <div><span class="rivet"><svg viewBox="0 0 20 20" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><b>WCB Cleared</b></div>
       </div>
     </div>
   </div>
 
   <section class="services" id="services">
     <div class="wrap">
-      <div class="svc-head">
+      <div class="svc-head rv">
         <h2 class="display">Our services</h2>
-        <p class="intro" style="margin:0">Six specialized services across British Columbia and Alberta.</p>
+        <p>Six specialized services across British Columbia and Alberta.</p>
       </div>
       <div class="svc-grid">
-        <ul class="svc-list" id="svcList">
-          <li class="active" data-img="0"><a href="https://www.mb-cleaning.ca/services/hood-and-vent-cleaning"><img class="m-img" src="images/hood-and-vent-cleaning.jpg" alt="Commercial exhaust hood and vent" loading="lazy"><h3>Hood and Vent Cleaning</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
-          <li data-img="1"><a href="https://www.mb-cleaning.ca/services/washroom-hygiene"><img class="m-img" src="images/washroom-hygiene.jpg" alt="Clean commercial washroom" loading="lazy"><h3>Washroom Hygiene</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
-          <li data-img="2"><a href="https://www.mb-cleaning.ca/services/commercial-kitchen-cleaning"><img class="m-img" src="images/commercial-kitchen-cleaning.jpg" alt="Deep cleaned commercial kitchen" loading="lazy"><h3>Commercial Kitchen Cleaning</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
-          <li data-img="3"><a href="https://www.mb-cleaning.ca/services/kitchen-preventive-maintenance"><img class="m-img" src="images/kitchen-preventive-maintenance.jpg" alt="Commercial kitchen equipment" loading="lazy"><h3>Kitchen Preventive Maintenance</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
-          <li data-img="4"><a href="https://www.mb-cleaning.ca/services/ceiling-cleaning"><img class="m-img" src="images/ceiling-cleaning.jpg" alt="Clean commercial ceiling tiles" loading="lazy"><h3>Ceiling Cleaning</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
-          <li data-img="5"><a href="https://www.mb-cleaning.ca/services/floor-care"><img class="m-img" src="images/floor-care.jpg" alt="Polished commercial floor" loading="lazy"><h3>Floor Care</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></li>
+        <ul class="svc-list rv" id="svcList">
+          <li class="active" data-img="0"><a href="https://www.mb-cleaning.ca/services/hood-and-vent-cleaning"><img class="m-img" src="images/hood-and-vent-cleaning.jpg" alt="Commercial kitchen exhaust hood with open duct access panel" loading="lazy"><h3>Hood and Vent Cleaning</h3><span class="go"><svg><use href="#arrow"/></svg></span></a></li>
+          <li data-img="1"><a href="https://www.mb-cleaning.ca/services/washroom-hygiene"><img class="m-img" src="images/washroom-hygiene.jpg" alt="Clean commercial washroom with stainless partitions" loading="lazy"><h3>Washroom Hygiene</h3><span class="go"><svg><use href="#arrow"/></svg></span></a></li>
+          <li data-img="2"><a href="https://www.mb-cleaning.ca/services/commercial-kitchen-cleaning"><img class="m-img" src="images/commercial-kitchen-cleaning.jpg" alt="Deep cleaned commercial restaurant kitchen line" loading="lazy"><h3>Commercial Kitchen Cleaning</h3><span class="go"><svg><use href="#arrow"/></svg></span></a></li>
+          <li data-img="3"><a href="https://www.mb-cleaning.ca/services/kitchen-preventive-maintenance"><img class="m-img" src="images/kitchen-preventive-maintenance.jpg" alt="Technician servicing commercial kitchen oven" loading="lazy"><h3>Kitchen Preventive Maintenance</h3><span class="go"><svg><use href="#arrow"/></svg></span></a></li>
+          <li data-img="4"><a href="https://www.mb-cleaning.ca/services/ceiling-cleaning"><img class="m-img" src="images/ceiling-cleaning.jpg" alt="Clean commercial kitchen ceiling tiles and vents" loading="lazy"><h3>Ceiling Cleaning</h3><span class="go"><svg><use href="#arrow"/></svg></span></a></li>
+          <li data-img="5"><a href="https://www.mb-cleaning.ca/services/floor-care"><img class="m-img" src="images/floor-care.jpg" alt="Polished commercial hallway floor" loading="lazy"><h3>Floor Care</h3><span class="go"><svg><use href="#arrow"/></svg></span></a></li>
         </ul>
-        <figure class="svc-stage" aria-hidden="true" style="margin:0">
-          <img class="show" src="images/hood-and-vent-cleaning.jpg" alt="">
-          <img src="images/washroom-hygiene.jpg" alt="" loading="lazy">
-          <img src="images/commercial-kitchen-cleaning.jpg" alt="" loading="lazy">
-          <img src="images/kitchen-preventive-maintenance.jpg" alt="" loading="lazy">
-          <img src="images/ceiling-cleaning.jpg" alt="" loading="lazy">
-          <img src="images/floor-care.jpg" alt="" loading="lazy">
-          <figcaption><strong id="stageTitle">Hood and Vent Cleaning</strong><a id="stageLink" href="https://www.mb-cleaning.ca/services/hood-and-vent-cleaning" tabindex="-1">View service</a></figcaption>
+        <figure class="svc-stage rv" aria-hidden="true">
+          <span class="stage-deco"></span>
+          <div class="stage-frame">
+            <img class="show" src="images/hood-and-vent-cleaning.jpg" alt="">
+            <img src="images/washroom-hygiene.jpg" alt="">
+            <img src="images/commercial-kitchen-cleaning.jpg" alt="">
+            <img src="images/kitchen-preventive-maintenance.jpg" alt="">
+            <img src="images/ceiling-cleaning.jpg" alt="">
+            <img src="images/floor-care.jpg" alt="">
+            <span class="wipe" id="wipe"></span>
+            <span class="corner tl"></span><span class="corner br"></span>
+          </div>
+          <figcaption class="stage-cap"><strong id="stageTitle">Hood and Vent Cleaning</strong><a id="stageLink" href="https://www.mb-cleaning.ca/services/hood-and-vent-cleaning" tabindex="-1">View service <svg class="ar"><use href="#arrow"/></svg></a></figcaption>
         </figure>
       </div>
     </div>
+    <svg class="canopy" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90 L0 60 L160 60 L260 18 L1180 18 L1280 60 L1440 60 L1440 90 Z" fill="#F7F9FD"/></svg>
   </section>
 
   <section class="adv" id="advantages">
     <div class="wrap adv-grid">
-      <div>
+      <div class="rv">
         <h2 class="display">Our advantages</h2>
         <div class="years">
-          <div class="num">25<sup>+</sup></div>
+          <div class="num"><span id="count">25</span><sup>+</sup></div>
           <p>Over 25 years of experience in commercial cleaning and hygiene.</p>
         </div>
-        <div class="adv-photo"><img src="images/kitchen-preventive-maintenance.jpg" alt="Clean commercial kitchen line" loading="lazy"></div>
+        <div class="adv-photo"><div class="ph"><img id="parallaxImg" src="images/kitchen-preventive-maintenance.jpg" alt="MB Facility Services technician servicing a commercial kitchen oven" loading="lazy"></div></div>
       </div>
-      <div class="tag" id="tag">
+      <div class="tag rv" id="tag">
         <div class="tag-top">
           <img src="images/maple-leaf.png" alt="">
           <div><strong>MB Facility Services</strong><span>Commercial Cleaning and Hygiene Services</span></div>
         </div>
         <ul>
-          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Professional Service</li>
-          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>ASTTBC Certified</li>
-          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Phil Ackland Certified</li>
-          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Fully Insured</li>
-          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>WCB Cleared</li>
-          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Over 25 Years of Experience</li>
-          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>Free Estimates</li>
-          <li><span class="box"><svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg></span>References Upon Request</li>
+          <li><span class="box"><svg><use href="#check"/></svg></span>Professional Service</li>
+          <li><span class="box"><svg><use href="#check"/></svg></span>ASTTBC Certified</li>
+          <li><span class="box"><svg><use href="#check"/></svg></span>Phil Ackland Certified</li>
+          <li><span class="box"><svg><use href="#check"/></svg></span>Fully Insured</li>
+          <li><span class="box"><svg><use href="#check"/></svg></span>WCB Cleared</li>
+          <li><span class="box"><svg><use href="#check"/></svg></span>Over 25 Years of Experience</li>
+          <li><span class="box"><svg><use href="#check"/></svg></span>Free Estimates</li>
+          <li><span class="box"><svg><use href="#check"/></svg></span>References Upon Request</li>
         </ul>
         <div class="tag-foot"><span>British Columbia</span><span>Alberta</span></div>
       </div>
@@ -423,32 +535,32 @@ footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
   </section>
 
   <section class="clients" aria-labelledby="clientsTitle">
-    <div class="wrap">
-      <h2 class="display" id="clientsTitle">Working with top companies</h2>
-    </div>
-    <div class="marquee" aria-hidden="false">
-      <div class="logo-tile"><img src="images/costco_logo.png" alt="Costco"></div>
-      <div class="logo-tile"><img src="images/tim-hortons-logo.png" alt="Tim Hortons"></div>
-      <div class="logo-tile"><img src="images/tacofino-logo.png" alt="Tacofino"></div>
-      <div class="logo-tile"><img src="images/browns-socialhouse-logo.png" alt="Browns Socialhouse"></div>
-      <div class="logo-tile"><img src="images/chances-logo.png" alt="Chances"></div>
-      <div class="logo-tile"><img src="images/hardrock_casino-logo.jpg" alt="Hard Rock Casino"></div>
-      <div class="logo-tile" aria-hidden="true"><img src="images/costco_logo.png" alt=""></div>
-      <div class="logo-tile" aria-hidden="true"><img src="images/tim-hortons-logo.png" alt=""></div>
-      <div class="logo-tile" aria-hidden="true"><img src="images/tacofino-logo.png" alt=""></div>
-      <div class="logo-tile" aria-hidden="true"><img src="images/browns-socialhouse-logo.png" alt=""></div>
-      <div class="logo-tile" aria-hidden="true"><img src="images/chances-logo.png" alt=""></div>
-      <div class="logo-tile" aria-hidden="true"><img src="images/hardrock_casino-logo.jpg" alt=""></div>
+    <div class="wrap rv"><h2 class="display" id="clientsTitle">Working with top companies</h2></div>
+    <div class="marquee-wrap">
+      <div class="marquee">
+        <div class="logo-tile"><img src="images/costco_logo.png" alt="Costco"></div>
+        <div class="logo-tile"><img src="images/tim-hortons-logo.png" alt="Tim Hortons"></div>
+        <div class="logo-tile"><img src="images/tacofino-logo.png" alt="Tacofino"></div>
+        <div class="logo-tile"><img src="images/browns-socialhouse-logo.png" alt="Browns Socialhouse"></div>
+        <div class="logo-tile"><img src="images/chances-logo.png" alt="Chances"></div>
+        <div class="logo-tile"><img src="images/hardrock_casino-logo.jpg" alt="Hard Rock Casino"></div>
+        <div class="logo-tile" aria-hidden="true"><img src="images/costco_logo.png" alt=""></div>
+        <div class="logo-tile" aria-hidden="true"><img src="images/tim-hortons-logo.png" alt=""></div>
+        <div class="logo-tile" aria-hidden="true"><img src="images/tacofino-logo.png" alt=""></div>
+        <div class="logo-tile" aria-hidden="true"><img src="images/browns-socialhouse-logo.png" alt=""></div>
+        <div class="logo-tile" aria-hidden="true"><img src="images/chances-logo.png" alt=""></div>
+        <div class="logo-tile" aria-hidden="true"><img src="images/hardrock_casino-logo.jpg" alt=""></div>
+      </div>
     </div>
   </section>
 
   <section class="locations" id="locations">
     <div class="wrap">
-      <div class="loc-head"><h2 class="display">Locations</h2></div>
+      <div class="loc-head rv"><h2 class="display">Locations</h2></div>
       <div class="loc-grid">
-        <article class="prov bc">
-          <h3>British Columbia</h3>
-          <p class="count">15 cities</p>
+        <article class="prov bc rv">
+          <span class="big" aria-hidden="true">BC</span>
+          <div class="prov-top"><span class="pin"><svg><use href="#pin"/></svg></span><h3>British Columbia</h3></div>
           <ul class="cities">
             <li>Vancouver</li><li>North Vancouver</li><li>West Vancouver</li><li>New Westminster</li><li>Port Coquitlam</li>
             <li>Richmond</li><li>Burnaby</li><li>Surrey</li><li>Delta</li><li>White Rock</li>
@@ -456,19 +568,19 @@ footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
           </ul>
           <div class="foot">
             <a class="mail" href="mailto:mbcleaning.bc@gmail.com">mbcleaning.bc@gmail.com</a>
-            <a href="https://www.mb-cleaning.ca/locations/british-columbia">British Columbia service area</a>
+            <a href="https://www.mb-cleaning.ca/locations/british-columbia">British Columbia <svg class="ar"><use href="#arrow"/></svg></a>
           </div>
         </article>
-        <article class="prov ab">
-          <h3>Alberta</h3>
-          <p class="count">6 cities</p>
+        <article class="prov ab rv">
+          <span class="big" aria-hidden="true">AB</span>
+          <div class="prov-top"><span class="pin"><svg><use href="#pin"/></svg></span><h3>Alberta</h3></div>
           <ul class="cities">
             <li>Edmonton</li><li>Calgary</li><li>St. Albert</li>
             <li>Red Deer</li><li>Airdrie</li><li>Lethbridge</li>
           </ul>
           <div class="foot">
             <a class="mail" href="mailto:mbcleaning.ab@gmail.com">mbcleaning.ab@gmail.com</a>
-            <a href="https://www.mb-cleaning.ca/locations/alberta">Alberta service area</a>
+            <a href="https://www.mb-cleaning.ca/locations/alberta">Alberta <svg class="ar"><use href="#arrow"/></svg></a>
           </div>
         </article>
       </div>
@@ -476,24 +588,25 @@ footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
   </section>
 
   <section class="estimate" aria-labelledby="estTitle">
-    <div class="bg" aria-hidden="true"></div>
+    <div class="bg" id="estBg" aria-hidden="true"></div>
     <div class="wrap">
-      <div>
+      <div class="rv">
         <h2 class="display" id="estTitle">Free estimates, references upon request</h2>
         <p>Contact MB Facility Services Ltd. in British Columbia or Alberta.</p>
-        <a class="btn btn-red" href="https://www.mb-cleaning.ca/contact">Contact us</a>
+        <a class="btn btn-red" href="https://www.mb-cleaning.ca/contact">Contact us <svg class="ar"><use href="#arrow"/></svg></a>
       </div>
-      <div class="reach">
-        <a href="mailto:mbcleaning.bc@gmail.com"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>British Columbia</small><b>mbcleaning.bc@gmail.com</b></span></a>
-        <a href="mailto:mbcleaning.ab@gmail.com"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Alberta</small><b>mbcleaning.ab@gmail.com</b></span></a>
-        <a href="https://wa.me/17789383936"><img src="images/whatsapp.svg" alt=""><span><small>WhatsApp</small><b>Message us on WhatsApp</b></span></a>
-        <a href="https://m.me/mbfalicityservices"><img src="images/messenger.svg" alt=""><span><small>Messenger</small><b>Message us on Messenger</b></span></a>
+      <div class="reach rv">
+        <a href="mailto:mbcleaning.bc@gmail.com"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>British Columbia</small><b>mbcleaning.bc@gmail.com</b></span><svg class="ar"><use href="#arrow"/></svg></a>
+        <a href="mailto:mbcleaning.ab@gmail.com"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Alberta</small><b>mbcleaning.ab@gmail.com</b></span><svg class="ar"><use href="#arrow"/></svg></a>
+        <a href="https://wa.me/17789383936"><img src="images/whatsapp.svg" alt=""><span><small>WhatsApp</small><b>Message us on WhatsApp</b></span><svg class="ar"><use href="#arrow"/></svg></a>
+        <a href="https://m.me/mbfalicityservices"><img src="images/messenger.svg" alt=""><span><small>Messenger</small><b>Message us on Messenger</b></span><svg class="ar"><use href="#arrow"/></svg></a>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
+  <div class="f-strip"></div>
   <div class="wrap">
     <div class="f-grid">
       <div class="f-contact">
@@ -539,13 +652,22 @@ footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
 
 <script>
 (function(){
-  // Hero baffle reveal
-  var hood=document.getElementById('hood');
-  var slats=hood.querySelectorAll('.baffles i');
-  slats.forEach(function(s,i){s.style.transitionDelay=(0.15+i*0.08)+'s';});
-  requestAnimationFrame(function(){setTimeout(function(){hood.classList.add('on');},120);});
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero=document.getElementById('hero');
+  hero.querySelectorAll('.baffles i').forEach(function(s,i){s.style.transitionDelay=(0.2+Math.abs(i-6.5)*0.07)+'s';});
+  setTimeout(function(){hero.classList.add('on');},150);
 
-  // Mobile nav
+  var header=document.getElementById('header');
+  function onScroll(){
+    header.classList.toggle('scrolled',window.scrollY>40);
+    if(reduce) return;
+    var est=document.getElementById('estBg'),r=est.parentElement.getBoundingClientRect();
+    if(r.bottom>0&&r.top<innerHeight){est.style.transform='translateY('+((r.top-innerHeight/2)*-0.12)+'px)';}
+    var pi=document.getElementById('parallaxImg'),pr=pi.parentElement.getBoundingClientRect();
+    if(pr.bottom>0&&pr.top<innerHeight){pi.style.transform='translateY('+(((pr.top+pr.height/2)-innerHeight/2)*-0.08-20)+'px)';}
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
   var burger=document.querySelector('.burger'),nav=document.getElementById('mainnav');
   burger.addEventListener('click',function(){
     var open=nav.classList.toggle('open');
@@ -556,28 +678,32 @@ footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
     b.addEventListener('click',function(){b.parentElement.classList.toggle('sub-open');});
   });
 
-  // Services stage
-  var items=document.querySelectorAll('#svcList li'),imgs=document.querySelectorAll('.svc-stage img'),
-      title=document.getElementById('stageTitle'),link=document.getElementById('stageLink');
+  var items=document.querySelectorAll('#svcList li'),imgs=document.querySelectorAll('.stage-frame img'),
+      title=document.getElementById('stageTitle'),link=document.getElementById('stageLink'),wipe=document.getElementById('wipe');
   function activate(li){
+    if(li.classList.contains('active')) return;
     items.forEach(function(x){x.classList.remove('active');});
     li.classList.add('active');
     var n=+li.dataset.img;
     imgs.forEach(function(im,i){im.classList.toggle('show',i===n);});
     title.textContent=li.querySelector('h3').textContent;
     link.href=li.querySelector('a').href;
+    wipe.classList.remove('go');void wipe.offsetWidth;wipe.classList.add('go');
   }
   items.forEach(function(li){
     li.addEventListener('mouseenter',function(){activate(li);});
     li.querySelector('a').addEventListener('focus',function(){activate(li);});
   });
 
-  // Advantage tag ticks
   var tag=document.getElementById('tag');
-  tag.querySelectorAll('.box svg').forEach(function(s,i){s.style.animationDelay=(i*0.12)+'s';});
+  tag.querySelectorAll('.box svg').forEach(function(s,i){s.style.animationDelay=(0.3+i*0.12)+'s';});
+  var count=document.getElementById('count');
+  function countUp(){if(reduce)return;var t0=null;function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1400,1);count.textContent=Math.round(25*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
+
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(e,o){if(e[0].isIntersecting){tag.classList.add('ticked');o.disconnect();}},{threshold:.35}).observe(tag);
-  }else{tag.classList.add('ticked');}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');if(e.target===tag)tag.classList.add('ticked');if(e.target.contains(count))countUp();io.unobserve(e.target);}});},{threshold:.18});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  }else{document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});tag.classList.add('ticked');}
 
   document.getElementById('yr').textContent=new Date().getFullYear();
 })();
